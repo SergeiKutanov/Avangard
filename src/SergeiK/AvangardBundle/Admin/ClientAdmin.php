@@ -65,7 +65,7 @@ class ClientAdmin extends Admin
             ->add('ppassportSeriea')
             ->add('passportNumber')
             ->add('passportIssuer')
-            ->add('passportIssueDate')
+            ->add('passportIssueDate', 'date')
             ->add('address')
         ;
     }
