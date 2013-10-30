@@ -78,9 +78,9 @@ class Car
     private $color;
 
     /**
-     * @var integer
+     * @var float
      *
-     * @ORM\Column(name="enginePowerHP", type="integer")
+     * @ORM\Column(name="enginePowerHP", type="decimal")
      */
     private $enginePowerHP;
 
@@ -317,7 +317,7 @@ class Car
     /**
      * Set enginePowerHP
      *
-     * @param integer $enginePowerHP
+     * @param float $enginePowerHP
      * @return Car
      */
     public function setEnginePowerHP($enginePowerHP)
@@ -330,7 +330,7 @@ class Car
     /**
      * Get enginePowerHP
      *
-     * @return integer 
+     * @return float
      */
     public function getEnginePowerHP()
     {

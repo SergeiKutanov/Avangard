@@ -10,6 +10,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 class CarAdmin extends Admin
 {
+    const OLDEST_YEAR = 1970;
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -74,7 +75,9 @@ class CarAdmin extends Admin
             ->add('model')
             ->add('vIN')
             ->add('type')
-            ->add('year')
+            ->add('year', 'date', array(
+                'years' => range(CarAdmin::OLDEST_YEAR, date('Y'))
+            ))
             ->add('engineNumber')
             ->add('chassisNumber')
             ->add('bodyNumber')
@@ -84,7 +87,9 @@ class CarAdmin extends Admin
             ->add('engineVolume')
             ->add('pTSNumber')
             ->add('issuerName')
-            ->add('issueDate')
+            ->add('issueDate', 'date', array(
+                'years' => range(CarAdmin::OLDEST_YEAR, date('Y'))
+            ))
         ;
     }
 
