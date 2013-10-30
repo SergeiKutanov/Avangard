@@ -10,3 +10,15 @@ services:
         arguments: [~, SergeiK\AvangardBundle\Entity\Car, SonataAdminBundle:CRUD]
         tags:
             - {name: sonata.admin, manager_type: orm, group: admin, label: Car}
+
+    sergei_k_avangard.admin.company:
+        class: SergeiK\AvangardBundle\Admin\CompanyAdmin
+        arguments: [~, SergeiK\AvangardBundle\Entity\Company, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Company}
+
+    sergei_k_avangard.admin.commision_contract:
+        class: SergeiK\AvangardBundle\Admin\CommisionContractAdmin
+        arguments: [~, SergeiK\AvangardBundle\Entity\CommisionContract, SergeiKAvangardBundle:CommisionContractAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: CommisionContract}

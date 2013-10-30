@@ -112,3 +112,11 @@ sonata_admin:
                 items:
                     - sergei_k_avangard.admin.client
                     - sergei_k_avangard.admin.car
+            sergei_k_avangard.admin.company_settings:
+                label: 'Company Settings'
+                items:
+                    - sergei_k_avangard.admin.company
+            sergei_K_avangard.admin.contracts:
+                label: 'Contracts'
+                items:
+                    - sergei_k_avangard.admin.commision_contract

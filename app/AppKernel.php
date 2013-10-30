@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new \Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new \Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
             new SergeiK\AvangardBundle\SergeiKAvangardBundle(),
+            new \MBence\OpenTBSBundle\OpenTBSBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

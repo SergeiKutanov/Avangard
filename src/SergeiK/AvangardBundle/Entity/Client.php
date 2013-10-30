@@ -294,4 +294,10 @@ class Client
     {
         return $this->ppassportSeriea;
     }
+
+    public function __toString(){
+        return $this->getLastName() . ' ' .
+        $this->getFirstName() . ' ' .
+        $this->getMiddleName();
+    }
 }

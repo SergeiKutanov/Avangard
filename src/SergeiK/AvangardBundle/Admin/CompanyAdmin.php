@@ -7,9 +7,8 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
-use Symfony\Component\Validator\Constraints\DateTime;
 
-class ClientAdmin extends Admin
+class CompanyAdmin extends Admin
 {
     /**
      * @param DatagridMapper $datagridMapper
@@ -18,14 +17,14 @@ class ClientAdmin extends Admin
     {
         $datagridMapper
             ->add('id')
-            ->add('firstName')
-            ->add('middleName')
-            ->add('lastName')
-            ->add('ppassportSeriea')
-            ->add('passportNumber')
-            ->add('passportIssuer')
-            ->add('passportIssueDate')
+            ->add('name')
             ->add('address')
+            ->add('iNN')
+            ->add('kPP')
+            ->add('bankAccountNumber')
+            ->add('corrAcountNumber')
+            ->add('bIK')
+            ->add('bankName')
         ;
     }
 
@@ -36,14 +35,14 @@ class ClientAdmin extends Admin
     {
         $listMapper
             ->add('id')
-            ->add('firstName')
-            ->add('middleName')
-            ->add('lastName')
-            ->add('ppassportSeriea')
-            ->add('passportNumber')
-            ->add('passportIssuer')
-            ->add('passportIssueDate')
+            ->add('name')
             ->add('address')
+            ->add('iNN')
+            ->add('kPP')
+            ->add('bankAccountNumber')
+            ->add('corrAcountNumber')
+            ->add('bIK')
+            ->add('bankName')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -60,16 +59,14 @@ class ClientAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('firstName')
-            ->add('middleName')
-            ->add('lastName')
-            ->add('ppassportSeriea')
-            ->add('passportNumber')
-            ->add('passportIssuer')
-            ->add('passportIssueDate', 'date', array(
-                'years' => range(1980, date('Y'))
-            ))
+            ->add('name')
             ->add('address')
+            ->add('iNN')
+            ->add('kPP')
+            ->add('bankAccountNumber')
+            ->add('corrAcountNumber')
+            ->add('bIK')
+            ->add('bankName')
         ;
     }
 
@@ -80,14 +77,14 @@ class ClientAdmin extends Admin
     {
         $showMapper
             ->add('id')
-            ->add('firstName')
-            ->add('middleName')
-            ->add('lastName')
-            ->add('ppassportSeriea')
-            ->add('passportNumber')
-            ->add('passportIssuer')
-            ->add('passportIssueDate')
+            ->add('name')
             ->add('address')
+            ->add('iNN')
+            ->add('kPP')
+            ->add('bankAccountNumber')
+            ->add('corrAcountNumber')
+            ->add('bIK')
+            ->add('bankName')
         ;
     }
 }

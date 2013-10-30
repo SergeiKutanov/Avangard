@@ -451,4 +451,9 @@ class Car
     {
         return $this->issueDate;
     }
+
+    public function __toString(){
+        return $this->getModel() . ' ' .
+        $this->getVIN();
+    }
 }
