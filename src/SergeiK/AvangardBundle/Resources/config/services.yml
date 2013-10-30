@@ -1,0 +1,12 @@
+services:
+    sergei_k_avangard.admin.client:
+        class: SergeiK\AvangardBundle\Admin\ClientAdmin
+        arguments: [~, SergeiK\AvangardBundle\Entity\Client, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Client}
+
+    sergei_k_avangard.admin.car:
+        class: SergeiK\AvangardBundle\Admin\CarAdmin
+        arguments: [~, SergeiK\AvangardBundle\Entity\Car, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Car}

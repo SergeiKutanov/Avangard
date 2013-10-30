@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: @SergeiKAvangardBundle/Resources/config/services.yml }
 
 framework:
     #esi:             ~
@@ -101,3 +102,13 @@ fos_user:
 
     group:
         group_class: Application\Sonata\UserBundle\Entity\Group
+
+sonata_admin:
+    title: Avangard
+    dashboard:
+        groups:
+            sergei_k_avangard.admin.reference:
+                label: 'Reference'
+                items:
+                    - sergei_k_avangard.admin.client
+                    - sergei_k_avangard.admin.car
