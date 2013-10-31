@@ -78,16 +78,16 @@ class Car
     private $color;
 
     /**
-     * @var float
+     * @var string
      *
-     * @ORM\Column(name="enginePowerHP", type="decimal", scale=2)
+     * @ORM\Column(name="enginePowerHP", type="string", length=10)
      */
     private $enginePowerHP;
 
     /**
-     * @var float
+     * @var string
      *
-     * @ORM\Column(name="enginePowerKWt", type="decimal", scale=2)
+     * @ORM\Column(name="enginePowerKWt", type="string", length=10)
      */
     private $enginePowerKWt;
 
@@ -453,7 +453,11 @@ class Car
     }
 
     public function __toString(){
-        return $this->getModel() . ' ' .
-        $this->getVIN();
+        $s = '';
+        if($this->getYear() != null){
+            $s = $this->getModel() . ' - ' . date('Y', $this->getYear()->getTimestamp()) . ' - ' .
+                $this->getVIN();
+        }
+        return $s;
     }
 }

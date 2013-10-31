@@ -418,4 +418,13 @@ class CommisionContract
     {
         return $this->warrantRegNum;
     }
+
+    public function __toString(){
+        $s = '';
+        if($this->getCar() != null){
+            $s = $this->getCar()->getModel() . ' - ' . date('Y', $this->getCar()->getYear()->getTimestamp()) . ' - ' .
+                $this->getCar()->getVIN();
+        }
+        return $s;
+    }
 }

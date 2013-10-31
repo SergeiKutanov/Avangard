@@ -6,10 +6,10 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
-use Symfony\Component\Validator\Constraints\DateTime;
 
-class ClientAdmin extends Admin
+class SaleContractAdmin extends Admin
 {
     /**
      * @param DatagridMapper $datagridMapper
@@ -18,14 +18,8 @@ class ClientAdmin extends Admin
     {
         $datagridMapper
             ->add('id')
-            ->add('firstName')
-            ->add('middleName')
-            ->add('lastName')
-            ->add('passportSeries')
-            ->add('passportNumber')
-            ->add('passportIssuer')
-            ->add('passportIssueDate')
-            ->add('address')
+            ->add('date')
+            ->add('price')
         ;
     }
 
@@ -35,14 +29,18 @@ class ClientAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('firstName')
-            ->add('middleName')
-            ->add('lastName')
+            ->add('id')
+            ->add('date')
+            ->add('commisionContract')
+            ->add('price')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
+                    'print' => array(
+                        'template'  => 'SergeiKAvangardBundle:Admin:sale_print_btn.twig.html'
+                    )
                 )
             ))
         ;
@@ -54,17 +52,12 @@ class ClientAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('firstName')
-            ->add('middleName')
-            ->add('lastName')
-            ->add('passportSeries')
-            ->add('passportNumber')
-            ->add('passportIssuer')
-            ->add('passportIssueDate', 'date', array(
-                'years' => range(1980, date('Y'))
+            ->add('date', null, array(
+                'data'  => new \DateTime()
             ))
-            ->add('address')
-            ->add('phone')
+            ->add('commisionContract')
+            ->add('buyer')
+            ->add('price')
         ;
     }
 
@@ -75,14 +68,12 @@ class ClientAdmin extends Admin
     {
         $showMapper
             ->add('id')
-            ->add('firstName')
-            ->add('middleName')
-            ->add('lastName')
-            ->add('ppassportSeriea')
-            ->add('passportNumber')
-            ->add('passportIssuer')
-            ->add('passportIssueDate')
-            ->add('address')
+            ->add('date')
+            ->add('price')
         ;
+    }
+
+    protected function configureRoutes(RouteCollection $collection){
+        $collection->add('print', $this->getRouterIdParameter().'/print');
     }
 }

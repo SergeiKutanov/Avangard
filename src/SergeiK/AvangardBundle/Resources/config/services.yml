@@ -22,3 +22,9 @@ services:
         arguments: [~, SergeiK\AvangardBundle\Entity\CommisionContract, SergeiKAvangardBundle:CommisionContractAdmin]
         tags:
             - {name: sonata.admin, manager_type: orm, group: admin, label: CommisionContract}
+
+    sergei_k_avangard.admin.sale_contract:
+        class: SergeiK\AvangardBundle\Admin\SaleContractAdmin
+        arguments: [~, SergeiK\AvangardBundle\Entity\SaleContract, SergeiKAvangardBundle:SaleContractAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: SaleContract}

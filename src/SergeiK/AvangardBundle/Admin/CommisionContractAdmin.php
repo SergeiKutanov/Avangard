@@ -32,15 +32,14 @@ class CommisionContractAdmin extends Admin
         $listMapper
             ->add('id')
             ->add('date')
-            ->add('minPrice')
-            ->add('reward')
+            ->add('car')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
                     'print' => array(
-                        'template'  => 'SergeiKAvangardBundle:Admin:dummy.twig.html'
+                        'template'  => 'SergeiKAvangardBundle:Admin:commision_print_btn.twig.html'
                     ),
                 )
             ))

@@ -77,11 +77,18 @@ class Client
      */
     private $address;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="phone", type="string", length=255, nullable=true)
+     */
+    private $phone;
+
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -97,14 +104,14 @@ class Client
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
-    
+
         return $this;
     }
 
     /**
      * Get firstName
      *
-     * @return string 
+     * @return string
      */
     public function getFirstName()
     {
@@ -120,14 +127,14 @@ class Client
     public function setMiddleName($middleName)
     {
         $this->middleName = $middleName;
-    
+
         return $this;
     }
 
     /**
      * Get middleName
      *
-     * @return string 
+     * @return string
      */
     public function getMiddleName()
     {
@@ -143,14 +150,14 @@ class Client
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
-    
+
         return $this;
     }
 
     /**
      * Get lastName
      *
-     * @return string 
+     * @return string
      */
     public function getLastName()
     {
@@ -166,12 +173,12 @@ class Client
     public function setPassportSeries($passportSeries)
     {
         $this->passportSeries = $passportSeries;
-    
+
         return $this;
     }
 
     /**
-     * Get з�passportSerieы
+     * Get passportSeries
      *
      * @return string 
      */
@@ -307,5 +314,28 @@ class Client
         $briefName .= mb_substr($this->getMiddleName(), 0, 1, 'UTF-8') . '.';
         return $briefName;
 
+    }
+
+    /**
+     * Set phone
+     *
+     * @param string $phone
+     * @return Client
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+    
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return string 
+     */
+    public function getPhone()
+    {
+        return $this->phone;
     }
 }

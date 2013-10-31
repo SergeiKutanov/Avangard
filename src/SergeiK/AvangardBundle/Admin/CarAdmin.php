@@ -41,21 +41,10 @@ class CarAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('id')
             ->add('model')
             ->add('vIN')
-            ->add('type')
             ->add('year')
-            ->add('engineNumber')
-            ->add('chassisNumber')
-            ->add('bodyNumber')
             ->add('color')
-            ->add('enginePowerHP')
-            ->add('enginePowerKWt')
-            ->add('engineVolume')
-            ->add('pTSNumber')
-            ->add('issuerName')
-            ->add('issueDate')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
