@@ -66,7 +66,9 @@ class CommisionContractAdmin extends Admin
                 'required'  => true
             ))
             ->add('minPrice')
+            ->add('minPriceEmpty')
             ->add('reward')
+            ->add('rewardEmpty')
         ;
     }
 

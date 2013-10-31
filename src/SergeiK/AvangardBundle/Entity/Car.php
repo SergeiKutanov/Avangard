@@ -80,14 +80,14 @@ class Car
     /**
      * @var float
      *
-     * @ORM\Column(name="enginePowerHP", type="decimal")
+     * @ORM\Column(name="enginePowerHP", type="decimal", scale=2)
      */
     private $enginePowerHP;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="enginePowerKWt", type="decimal")
+     * @ORM\Column(name="enginePowerKWt", type="decimal", scale=2)
      */
     private $enginePowerKWt;
 

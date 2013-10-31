@@ -47,7 +47,7 @@ class Client
      *
      * @ORM\Column(name="passportSeries", type="string", length=5)
      */
-    private $ppassportSeriea;
+    private $passportSeries;
 
     /**
      * @var string
@@ -299,5 +299,13 @@ class Client
         return $this->getLastName() . ' ' .
         $this->getFirstName() . ' ' .
         $this->getMiddleName();
+    }
+
+    public function getBriefName(){
+        $briefName = $this->getLastName() . ' ';
+        $briefName .= mb_substr($this->getFirstName(), 0, 1, 'UTF-8') . '. ';
+        $briefName .= mb_substr($this->getMiddleName(), 0, 1, 'UTF-8') . '.';
+        return $briefName;
+
     }
 }

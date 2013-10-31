@@ -61,6 +61,13 @@ class CommisionContract
     private $minPrice;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="minPriceEmpty", type="boolean", nullable=true)
+     */
+    private $minPriceEmpty;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="reward", type="integer")
@@ -68,10 +75,17 @@ class CommisionContract
     private $reward;
 
 
+     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="rewardEmpty", type="boolean", nullable=true)
+     */
+    private $rewardEmpty;
+
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -87,18 +101,110 @@ class CommisionContract
     public function setDate($date)
     {
         $this->date = $date;
-
+    
         return $this;
     }
 
     /**
      * Get date
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set minPrice
+     *
+     * @param integer $minPrice
+     * @return CommisionContract
+     */
+    public function setMinPrice($minPrice)
+    {
+        $this->minPrice = $minPrice;
+    
+        return $this;
+    }
+
+    /**
+     * Get minPrice
+     *
+     * @return integer 
+     */
+    public function getMinPrice()
+    {
+        return $this->minPrice;
+    }
+
+    /**
+     * Set minPriceEmpty
+     *
+     * @param boolean $minPriceEmpty
+     * @return CommisionContract
+     */
+    public function setMinPriceEmpty($minPriceEmpty)
+    {
+        $this->minPriceEmpty = $minPriceEmpty;
+    
+        return $this;
+    }
+
+    /**
+     * Get minPriceEmpty
+     *
+     * @return boolean 
+     */
+    public function getMinPriceEmpty()
+    {
+        return $this->minPriceEmpty;
+    }
+
+    /**
+     * Set reward
+     *
+     * @param integer $reward
+     * @return CommisionContract
+     */
+    public function setReward($reward)
+    {
+        $this->reward = $reward;
+    
+        return $this;
+    }
+
+    /**
+     * Get reward
+     *
+     * @return integer 
+     */
+    public function getReward()
+    {
+        return $this->reward;
+    }
+
+    /**
+     * Set rewardEmpty
+     *
+     * @param boolean $rewardEmpty
+     * @return CommisionContract
+     */
+    public function setRewardEmpty($rewardEmpty)
+    {
+        $this->rewardEmpty = $rewardEmpty;
+    
+        return $this;
+    }
+
+    /**
+     * Get rewardEmpty
+     *
+     * @return boolean 
+     */
+    public function getRewardEmpty()
+    {
+        return $this->rewardEmpty;
     }
 
     /**
@@ -107,17 +213,17 @@ class CommisionContract
      * @param \SergeiK\AvangardBundle\Entity\Client $commisioner
      * @return CommisionContract
      */
-    public function setCommisioner($commisioner)
+    public function setCommisioner(\SergeiK\AvangardBundle\Entity\Client $commisioner = null)
     {
         $this->commisioner = $commisioner;
-
+    
         return $this;
     }
 
     /**
      * Get commisioner
      *
-     * @return \SergeiK\AvangardBundle\Entity\Client
+     * @return \SergeiK\AvangardBundle\Entity\Client 
      */
     public function getCommisioner()
     {
@@ -130,17 +236,17 @@ class CommisionContract
      * @param \SergeiK\AvangardBundle\Entity\Client $commisionerAgent
      * @return CommisionContract
      */
-    public function setCommisionerAgent($commisionerAgent)
+    public function setCommisionerAgent(\SergeiK\AvangardBundle\Entity\Client $commisionerAgent = null)
     {
         $this->commisionerAgent = $commisionerAgent;
-
+    
         return $this;
     }
 
     /**
      * Get commisionerAgent
      *
-     * @return \SergeiK\AvangardBundle\Entity\Client
+     * @return \SergeiK\AvangardBundle\Entity\Client 
      */
     public function getCommisionerAgent()
     {
@@ -153,67 +259,21 @@ class CommisionContract
      * @param \SergeiK\AvangardBundle\Entity\Car $car
      * @return CommisionContract
      */
-    public function setCar($car)
+    public function setCar(\SergeiK\AvangardBundle\Entity\Car $car = null)
     {
         $this->car = $car;
-
+    
         return $this;
     }
 
     /**
      * Get car
      *
-     * @return \SergeiK\AvangardBundle\Entity\Car
+     * @return \SergeiK\AvangardBundle\Entity\Car 
      */
     public function getCar()
     {
         return $this->car;
-    }
-
-    /**
-     * Set minPrice
-     *
-     * @param integer $minPrice
-     * @return CommisionContract
-     */
-    public function setMinPrice($minPrice)
-    {
-        $this->minPrice = $minPrice;
-
-        return $this;
-    }
-
-    /**
-     * Get minPrice
-     *
-     * @return integer
-     */
-    public function getMinPrice()
-    {
-        return $this->minPrice;
-    }
-
-    /**
-     * Set reward
-     *
-     * @param integer $reward
-     * @return CommisionContract
-     */
-    public function setReward($reward)
-    {
-        $this->reward = $reward;
-
-        return $this;
-    }
-
-    /**
-     * Get reward
-     *
-     * @return integer
-     */
-    public function getReward()
-    {
-        return $this->reward;
     }
 
     /**
