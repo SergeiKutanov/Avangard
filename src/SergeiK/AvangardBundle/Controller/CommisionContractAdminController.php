@@ -13,7 +13,7 @@ use SergeiK\AvangardBundle\Admin\CommisionContractAdmin;
 use Sonata\AdminBundle\Controller\CRUDController;
 use SergeiK\AvangardBundle\Entity\CommisionContract;
 
-class CommisionContractAdminController extends CRUDController{
+class CommisionContractAdminController extends CRUDController {
     public function printAction(CommisionContract $c){
         $TBS = $this->container->get('opentbs');
         $template_path = $this->get('kernel')->getRootDir().'/../web/doc_templates/';
@@ -36,6 +36,11 @@ class CommisionContractAdminController extends CRUDController{
         } else {
             $reward = $c->getReward();
             $reward .= ' ( ' . $this->num_propis($c->getReward()) . ')';
+        }
+
+        $company = $this->getDoctrine()->getRepository("SergeiKAvangardBundle:Company")->find(1);
+        if(!$company){
+            die('Set company first');
         }
 
         $data = array(
@@ -63,8 +68,24 @@ class CommisionContractAdminController extends CRUDController{
             'passport_i'                => $c->getCommisioner()->getPassportIssuer(),
             'passport_i_date'           => date('d.m.Y', $c->getCommisioner()->getPassportIssueDate()->getTimestamp()),
             'issuer_address'            => $c->getCommisioner()->getAddress(),
-            'commisioner_bn'            => $c->getCommisioner()->getBriefName()
+            'commisioner_bn'            => $c->getCommisioner()->getBriefName(),
+            'company_name'              => $company->getName(),
+            'company_address'           => $company->getAddress(),
+            'company_inn'               => $company->getINN(),
+            'company_kpp'               => $company->getKPP(),
+            'company_acc_n'             => $company->getBankAccountNumber(),
+            'company_corr_acc_n'        => $company->getCorrAcountNumber(),
+            'company_bik'               => $company->getBIK(),
+            'company_bank_name'         => $company->getBankName(),
         );
+
+        if($c->getCommisionerAgent() != null){
+            $data["commisioner_agent_full_name"]    = $c->getCommisionerAgent()->__toString();
+            $data['warrant_num']                    = $c->getWarrantNumber();
+            $data['warrant_date']                   = date('d.m.Y', $c->getWarrantDate()->getTimestamp());
+            $data['warrant_issuer']                 = $c->getWarrantIssuer();
+            $data['warrant_reg_num']                = $c->getWarrantRegNum();
+        }
 
         $TBS->MergeField('client', $data);
         $filename = 'commision_contract_' .

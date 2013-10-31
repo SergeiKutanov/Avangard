@@ -62,6 +62,10 @@ class CommisionContractAdmin extends Admin
             ->add('commisionerAgent', null, array(
                 'required'  => false
             ))
+            ->add('warrantNumber')
+            ->add('warrantDate')
+            ->add('warrantIssuer')
+            ->add('warrantRegNum')
             ->add('car', null, array(
                 'required'  => true
             ))

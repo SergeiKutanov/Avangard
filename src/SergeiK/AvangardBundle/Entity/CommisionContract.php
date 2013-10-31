@@ -83,6 +83,34 @@ class CommisionContract
     private $rewardEmpty;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="warrant_number", type="string", nullable=true)
+     */
+    private $warrantNumber;
+
+    /**
+     * @var DateTime
+     *
+     * @ORM\Column(name="warrant_date", type="date", nullable=true)
+     */
+    private $warrantDate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="warrant_issuer", type="string", nullable=true)
+     */
+    private $warrantIssuer;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="warrant_register_number", type="string", nullable=true)
+     */
+    private $warrantRegNum;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -297,5 +325,97 @@ class CommisionContract
     public function getCompany()
     {
         return $this->company;
+    }
+
+    /**
+     * Set warrantNumber
+     *
+     * @param string $warrantNumber
+     * @return CommisionContract
+     */
+    public function setWarrantNumber($warrantNumber)
+    {
+        $this->warrantNumber = $warrantNumber;
+    
+        return $this;
+    }
+
+    /**
+     * Get warrantNumber
+     *
+     * @return string 
+     */
+    public function getWarrantNumber()
+    {
+        return $this->warrantNumber;
+    }
+
+    /**
+     * Set warrantDate
+     *
+     * @param \DateTime $warrantDate
+     * @return CommisionContract
+     */
+    public function setWarrantDate($warrantDate)
+    {
+        $this->warrantDate = $warrantDate;
+    
+        return $this;
+    }
+
+    /**
+     * Get warrantDate
+     *
+     * @return \DateTime 
+     */
+    public function getWarrantDate()
+    {
+        return $this->warrantDate;
+    }
+
+    /**
+     * Set warrantIssuer
+     *
+     * @param string $warrantIssuer
+     * @return CommisionContract
+     */
+    public function setWarrantIssuer($warrantIssuer)
+    {
+        $this->warrantIssuer = $warrantIssuer;
+    
+        return $this;
+    }
+
+    /**
+     * Get warrantIssuer
+     *
+     * @return string 
+     */
+    public function getWarrantIssuer()
+    {
+        return $this->warrantIssuer;
+    }
+
+    /**
+     * Set warrantRegNum
+     *
+     * @param string $warrantRegNum
+     * @return CommisionContract
+     */
+    public function setWarrantRegNum($warrantRegNum)
+    {
+        $this->warrantRegNum = $warrantRegNum;
+    
+        return $this;
+    }
+
+    /**
+     * Get warrantRegNum
+     *
+     * @return string 
+     */
+    public function getWarrantRegNum()
+    {
+        return $this->warrantRegNum;
     }
 }
