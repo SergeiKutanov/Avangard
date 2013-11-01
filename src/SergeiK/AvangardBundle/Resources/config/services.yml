@@ -7,7 +7,7 @@ services:
 
     sergei_k_avangard.admin.car:
         class: SergeiK\AvangardBundle\Admin\CarAdmin
-        arguments: [~, SergeiK\AvangardBundle\Entity\Car, SonataAdminBundle:CRUD]
+        arguments: [~, SergeiK\AvangardBundle\Entity\Car, SergeiKAvangardBundle:CarAdmin]
         tags:
             - {name: sonata.admin, manager_type: orm, group: admin, label: Car}
 

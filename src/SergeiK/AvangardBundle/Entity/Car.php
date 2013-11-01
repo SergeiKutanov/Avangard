@@ -119,11 +119,30 @@ class Car
      */
     private $issueDate;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="price", type="integer", nullable=true)
+     */
+    private $price;
+
+    /**
+     * @var string
+     * @ORM\Column(name="adds", type="text", nullable=true)
+     */
+    private $adds;
+
+    /**
+     * @var string
+     * @ORM\Column(name="transmission", type="string", nullable=true)
+     */
+    private $transmission;
+
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -139,14 +158,14 @@ class Car
     public function setModel($model)
     {
         $this->model = $model;
-    
+
         return $this;
     }
 
     /**
      * Get model
      *
-     * @return string 
+     * @return string
      */
     public function getModel()
     {
@@ -162,14 +181,14 @@ class Car
     public function setVIN($vIN)
     {
         $this->vIN = $vIN;
-    
+
         return $this;
     }
 
     /**
      * Get vIN
      *
-     * @return string 
+     * @return string
      */
     public function getVIN()
     {
@@ -185,14 +204,14 @@ class Car
     public function setType($type)
     {
         $this->type = $type;
-    
+
         return $this;
     }
 
     /**
      * Get type
      *
-     * @return string 
+     * @return string
      */
     public function getType()
     {
@@ -208,14 +227,14 @@ class Car
     public function setYear($year)
     {
         $this->year = $year;
-    
+
         return $this;
     }
 
     /**
      * Get year
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getYear()
     {
@@ -231,14 +250,14 @@ class Car
     public function setEngineNumber($engineNumber)
     {
         $this->engineNumber = $engineNumber;
-    
+
         return $this;
     }
 
     /**
      * Get engineNumber
      *
-     * @return string 
+     * @return string
      */
     public function getEngineNumber()
     {
@@ -254,14 +273,14 @@ class Car
     public function setChassisNumber($chassisNumber)
     {
         $this->chassisNumber = $chassisNumber;
-    
+
         return $this;
     }
 
     /**
      * Get chassisNumber
      *
-     * @return string 
+     * @return string
      */
     public function getChassisNumber()
     {
@@ -277,14 +296,14 @@ class Car
     public function setBodyNumber($bodyNumber)
     {
         $this->bodyNumber = $bodyNumber;
-    
+
         return $this;
     }
 
     /**
      * Get bodyNumber
      *
-     * @return string 
+     * @return string
      */
     public function getBodyNumber()
     {
@@ -300,14 +319,14 @@ class Car
     public function setColor($color)
     {
         $this->color = $color;
-    
+
         return $this;
     }
 
     /**
      * Get color
      *
-     * @return string 
+     * @return string
      */
     public function getColor()
     {
@@ -323,7 +342,7 @@ class Car
     public function setEnginePowerHP($enginePowerHP)
     {
         $this->enginePowerHP = $enginePowerHP;
-    
+
         return $this;
     }
 
@@ -346,14 +365,14 @@ class Car
     public function setEnginePowerKWt($enginePowerKWt)
     {
         $this->enginePowerKWt = $enginePowerKWt;
-    
+
         return $this;
     }
 
     /**
      * Get enginePowerKWt
      *
-     * @return float 
+     * @return float
      */
     public function getEnginePowerKWt()
     {
@@ -369,14 +388,14 @@ class Car
     public function setEngineVolume($engineVolume)
     {
         $this->engineVolume = $engineVolume;
-    
+
         return $this;
     }
 
     /**
      * Get engineVolume
      *
-     * @return integer 
+     * @return integer
      */
     public function getEngineVolume()
     {
@@ -392,14 +411,14 @@ class Car
     public function setPTSNumber($pTSNumber)
     {
         $this->pTSNumber = $pTSNumber;
-    
+
         return $this;
     }
 
     /**
      * Get pTSNumber
      *
-     * @return string 
+     * @return string
      */
     public function getPTSNumber()
     {
@@ -415,14 +434,14 @@ class Car
     public function setIssuerName($issuerName)
     {
         $this->issuerName = $issuerName;
-    
+
         return $this;
     }
 
     /**
      * Get issuerName
      *
-     * @return string 
+     * @return string
      */
     public function getIssuerName()
     {
@@ -438,14 +457,14 @@ class Car
     public function setIssueDate($issueDate)
     {
         $this->issueDate = $issueDate;
-    
+
         return $this;
     }
 
     /**
      * Get issueDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getIssueDate()
     {
@@ -459,5 +478,74 @@ class Car
                 $this->getVIN();
         }
         return $s;
+    }
+
+    /**
+     * Set price
+     *
+     * @param integer $price
+     * @return Car
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+    
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return integer 
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set adds
+     *
+     * @param string $adds
+     * @return Car
+     */
+    public function setAdds($adds)
+    {
+        $this->adds = $adds;
+    
+        return $this;
+    }
+
+    /**
+     * Get adds
+     *
+     * @return string 
+     */
+    public function getAdds()
+    {
+        return $this->adds;
+    }
+
+    /**
+     * Set transmission
+     *
+     * @param string $transmission
+     * @return Car
+     */
+    public function setTransmission($transmission)
+    {
+        $this->transmission = $transmission;
+    
+        return $this;
+    }
+
+    /**
+     * Get transmission
+     *
+     * @return string 
+     */
+    public function getTransmission()
+    {
+        return $this->transmission;
     }
 }
