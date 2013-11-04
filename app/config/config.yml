@@ -121,3 +121,4 @@ sonata_admin:
                 items:
                     - sergei_k_avangard.admin.commision_contract
                     - sergei_k_avangard.admin.sale_contract
+                    - sergei_k_avangard.admin.deposit_contract
