@@ -138,6 +138,12 @@ class Car
      */
     private $transmission;
 
+    /**
+     * @var boolean
+     * @ORM\Column(name="active", type="boolean", nullable=true)
+     */
+    private $active;
+
 
     /**
      * Get id
@@ -547,5 +553,28 @@ class Car
     public function getTransmission()
     {
         return $this->transmission;
+    }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     * @return Car
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+    
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean 
+     */
+    public function getActive()
+    {
+        return $this->active;
     }
 }

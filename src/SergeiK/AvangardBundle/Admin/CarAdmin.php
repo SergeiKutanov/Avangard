@@ -11,6 +11,12 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 class CarAdmin extends Admin
 {
+    protected $datagridValues = array(
+        '_page'         => 1,
+        '_sort_by'     => 'model',
+        '_sort_order'   => 'ASC'
+    );
+
     const OLDEST_YEAR = 1980;
     /**
      * @param DatagridMapper $datagridMapper
@@ -18,21 +24,10 @@ class CarAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('id')
+            ->add('active')
             ->add('model')
-            ->add('vIN')
-            ->add('type')
-            ->add('year')
-            ->add('engineNumber')
-            ->add('chassisNumber')
-            ->add('bodyNumber')
-            ->add('color')
-            ->add('enginePowerHP')
-            ->add('enginePowerKWt')
-            ->add('engineVolume')
+            //->add('year')
             ->add('pTSNumber')
-            ->add('issuerName')
-            ->add('issueDate')
         ;
     }
 
@@ -42,14 +37,12 @@ class CarAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('model')
+            ->addIdentifier('model')
             ->add('vIN')
             ->add('year')
             ->add('color')
             ->add('_action', 'actions', array(
                 'actions' => array(
-                    'show' => array(),
-                    'edit' => array(),
                     'delete' => array(),
                     'print' => array(
                         'template'  => 'SergeiKAvangardBundle:Admin:commision_print_btn.twig.html'
@@ -86,6 +79,7 @@ class CarAdmin extends Admin
             ->add('transmission')
             ->add('price')
             ->add('adds')
+            ->add('active')
         ;
     }
 

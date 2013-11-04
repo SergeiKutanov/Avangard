@@ -11,6 +11,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 class CommisionContractAdmin extends Admin
 {
+
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -19,8 +20,7 @@ class CommisionContractAdmin extends Admin
         $datagridMapper
             ->add('id')
             ->add('date')
-            ->add('minPrice')
-            ->add('reward')
+            ->add('car.active')
         ;
     }
 
@@ -30,13 +30,11 @@ class CommisionContractAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('id')
+            ->addIdentifier('id')
             ->add('date')
             ->add('car')
             ->add('_action', 'actions', array(
                 'actions' => array(
-                    'show' => array(),
-                    'edit' => array(),
                     'delete' => array(),
                     'print' => array(
                         'template'  => 'SergeiKAvangardBundle:Admin:commision_print_btn.twig.html'
@@ -51,6 +49,14 @@ class CommisionContractAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $car_l = $this->getModelManager()->createQuery(
+            'SergeiK\AvangardBundle\Entity\Car',
+            'c'
+        );
+        $car_l->select('c')
+            ->where('c.active = :act')
+            ->setParameter('act', true);
+
         $formMapper
             ->add('date', null, array(
                 'data'  => new \DateTime()
@@ -66,7 +72,8 @@ class CommisionContractAdmin extends Admin
             ->add('warrantIssuer')
             ->add('warrantRegNum')
             ->add('car', null, array(
-                'required'  => true
+                'required'  => true,
+                'choices'     => $car_l->execute()
             ))
             ->add('minPrice')
             ->add('minPriceEmpty')

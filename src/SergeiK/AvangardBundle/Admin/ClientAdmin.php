@@ -11,21 +11,23 @@ use Symfony\Component\Validator\Constraints\DateTime;
 
 class ClientAdmin extends Admin
 {
+    protected $datagridValues = array(
+        '_page'         => 1,
+        '_sort_order'   => 'ASC',
+        '_sort_by'      => 'lastName'
+    );
+
     /**
      * @param DatagridMapper $datagridMapper
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('id')
+            ->add('lastName')
             ->add('firstName')
             ->add('middleName')
-            ->add('lastName')
             ->add('passportSeries')
             ->add('passportNumber')
-            ->add('passportIssuer')
-            ->add('passportIssueDate')
-            ->add('address')
         ;
     }
 
@@ -35,13 +37,11 @@ class ClientAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->addIdentifier('lastName')
             ->add('firstName')
             ->add('middleName')
-            ->add('lastName')
             ->add('_action', 'actions', array(
                 'actions' => array(
-                    'show' => array(),
-                    'edit' => array(),
                     'delete' => array(),
                 )
             ))
@@ -74,15 +74,9 @@ class ClientAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('id')
-            ->add('firstName')
-            ->add('middleName')
             ->add('lastName')
             ->add('ppassportSeriea')
             ->add('passportNumber')
-            ->add('passportIssuer')
-            ->add('passportIssueDate')
-            ->add('address')
         ;
     }
 }

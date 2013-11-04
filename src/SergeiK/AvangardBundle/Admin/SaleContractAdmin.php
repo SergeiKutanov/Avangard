@@ -28,15 +28,15 @@ class SaleContractAdmin extends Admin
      */
     protected function configureListFields(ListMapper $listMapper)
     {
+
+
         $listMapper
-            ->add('id')
+            ->addIdentifier('id')
             ->add('date')
             ->add('commisionContract')
             ->add('price')
             ->add('_action', 'actions', array(
                 'actions' => array(
-                    'show' => array(),
-                    'edit' => array(),
                     'delete' => array(),
                     'print' => array(
                         'template'  => 'SergeiKAvangardBundle:Admin:sale_print_btn.twig.html'
@@ -51,11 +51,24 @@ class SaleContractAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $com_list = $this->getModelManager()->createQuery(
+            'SergeiK\AvangardBundle\Entity\CommisionContract',
+            'c'
+        );
+
+        $com_list->select('c')
+            ->leftJoin('c.car', 'car')
+            ->where('car.active = :act')
+            ->setParameter('act', true);
+
         $formMapper
             ->add('date', null, array(
                 'data'  => new \DateTime()
             ))
-            ->add('commisionContract')
+            ->add('commisionContract', null, array(
+                'required'  => true,
+                'choices'   => $com_list->execute()
+            ))
             ->add('buyer')
             ->add('price')
         ;
