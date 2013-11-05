@@ -51,6 +51,11 @@ class SaleContractAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $date = new \DateTime();
+        $saleContract = $this->getSubject();
+        if($saleContract->getDate() != null){
+            $date = $saleContract->getDate();
+        }
         $com_list = $this->getModelManager()->createQuery(
             'SergeiK\AvangardBundle\Entity\CommisionContract',
             'c'
@@ -63,7 +68,7 @@ class SaleContractAdmin extends Admin
 
         $formMapper
             ->add('date', null, array(
-                'data'  => new \DateTime()
+                'data'  => $date
             ))
             ->add('commisionContract', null, array(
                 'required'  => true,

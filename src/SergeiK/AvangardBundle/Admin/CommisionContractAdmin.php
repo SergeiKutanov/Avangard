@@ -12,6 +12,11 @@ use Sonata\AdminBundle\Show\ShowMapper;
 class CommisionContractAdmin extends Admin
 {
 
+    protected $datagridValues = array(
+        'car.active'    => array(
+            'value'         => 1
+        )
+    );
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -31,6 +36,7 @@ class CommisionContractAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id')
+            ->add('car.active')
             ->add('date')
             ->add('car')
             ->add('_action', 'actions', array(
@@ -49,17 +55,25 @@ class CommisionContractAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $date = new \DateTime();
+        $comContract = $this->getSubject();
+        if($comContract->getDate() != null){
+            $date = $comContract->getDate();
+        }
+
         $car_l = $this->getModelManager()->createQuery(
             'SergeiK\AvangardBundle\Entity\Car',
             'c'
         );
-        $car_l->select('c')
-            ->where('c.active = :act')
-            ->setParameter('act', true);
+        if(!$this->getSubject()->getCar()){
+            $car_l->select('c')
+                ->where('c.active = :act')
+                ->setParameter('act', true);
+        }
 
         $formMapper
             ->add('date', null, array(
-                'data'  => new \DateTime()
+                'data'  => $date
             ))
             ->add('commisioner', null, array(
                 'required'  => true
@@ -98,4 +112,5 @@ class CommisionContractAdmin extends Admin
     protected function configureRoutes(RouteCollection $collection){
         $collection->add('print', $this->getRouterIdParameter().'/print');
     }
+
 }

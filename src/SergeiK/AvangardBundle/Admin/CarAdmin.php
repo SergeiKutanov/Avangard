@@ -14,7 +14,10 @@ class CarAdmin extends Admin
     protected $datagridValues = array(
         '_page'         => 1,
         '_sort_by'     => 'model',
-        '_sort_order'   => 'ASC'
+        '_sort_order'   => 'ASC',
+        'active'        => array(
+            'value'         => true
+        )
     );
 
     const OLDEST_YEAR = 1980;
@@ -37,6 +40,7 @@ class CarAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->add('active')
             ->addIdentifier('model')
             ->add('vIN')
             ->add('year')

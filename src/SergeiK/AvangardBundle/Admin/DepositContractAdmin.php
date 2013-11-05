@@ -18,11 +18,7 @@ class DepositContractAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('id')
-            ->add('date')
-            ->add('amount')
-            ->add('carPrice')
-            ->add('deadline')
+            ->add('buyer')
         ;
     }
 
@@ -32,15 +28,14 @@ class DepositContractAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('id')
+            ->addIdentifier('id')
             ->add('date')
             ->add('amount')
             ->add('carPrice')
             ->add('deadline')
+            ->add('buyer')
             ->add('_action', 'actions', array(
                 'actions' => array(
-                    'show' => array(),
-                    'edit' => array(),
                     'delete' => array(),
                     'print' => array(
                         'template'  => 'SergeiKAvangardBundle:Admin:commision_print_btn.twig.html'
@@ -56,8 +51,12 @@ class DepositContractAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $date = new \DateTime();
+        $depContract = $this->getSubject();
+        if($depContract->getDate() != null){
+            $date = $depContract->getDate();
+        }
         $interval = new \DateInterval("P10D");
-        $end_date = new \DateTime();
+        $end_date = clone $date;
         $end_date->add($interval);
         
         $formMapper
