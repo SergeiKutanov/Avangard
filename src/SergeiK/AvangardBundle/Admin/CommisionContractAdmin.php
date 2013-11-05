@@ -85,10 +85,11 @@ class CommisionContractAdmin extends Admin
             ->add('warrantDate')
             ->add('warrantIssuer')
             ->add('warrantRegNum')
-            ->add('car', null, array(
+            ->add('car', 'sonata_type_model', array(
                 'required'  => true,
-                'choices'     => $car_l->execute()
-            ))
+                'query'     => $car_l,
+                'empty_value'    => 'Choose a car'
+                ))
             ->add('minPrice')
             ->add('minPriceEmpty')
             ->add('reward')

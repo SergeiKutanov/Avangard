@@ -63,7 +63,10 @@ class DepositContractAdmin extends Admin
             ->add('date', null, array(
                 'data'  => $date
             ))
-            ->add('commisionContract')
+            ->add('commisionContract', 'sonata_type_model', array(
+                'required'      => true,
+                'empty_value'   => 'Choose a commision contract'
+            ))
             ->add('buyer')
             ->add('amount')
             ->add('carPrice')

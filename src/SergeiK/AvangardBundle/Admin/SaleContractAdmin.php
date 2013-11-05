@@ -70,9 +70,10 @@ class SaleContractAdmin extends Admin
             ->add('date', null, array(
                 'data'  => $date
             ))
-            ->add('commisionContract', null, array(
-                'required'  => true,
-                'choices'   => $com_list->execute()
+            ->add('commisionContract', 'sonata_type_model', array(
+                'required'      => true,
+                'query'         => $com_list,
+                'empty_value'   => 'Choose a commision contract'
             ))
             ->add('buyer')
             ->add('price')
