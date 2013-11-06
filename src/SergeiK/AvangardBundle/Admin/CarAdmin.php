@@ -40,16 +40,23 @@ class CarAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->add('commisionContract.date')
             ->add('active')
             ->addIdentifier('model')
             ->add('vIN')
-            ->add('year')
+            ->add('year', null, array(
+                'template'      => 'SergeiKAvangardBundle:Admin:car_year.html.twig'
+            ))
             ->add('color')
+            ->add('price')
+            ->add('payed')
+            ->add('should_pay', null, array(
+                'template'      => 'SergeiKAvangardBundle:Admin:car_parking_price.twig.html',
+            ))
             ->add('_action', 'actions', array(
                 'actions' => array(
-                    'delete' => array(),
                     'print' => array(
-                        'template'  => 'SergeiKAvangardBundle:Admin:commision_print_btn.twig.html'
+                        'template'      => 'SergeiKAvangardBundle:Admin:commision_print_btn.twig.html'
                     ),
                 )
             ))
@@ -84,6 +91,7 @@ class CarAdmin extends Admin
             ->add('price')
             ->add('adds')
             ->add('active')
+            ->add('payed')
         ;
     }
 

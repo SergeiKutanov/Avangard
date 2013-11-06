@@ -38,6 +38,5 @@ class CarAdminController extends CRUDController {
             $c->getModel() . '-' .
             date('Y', $c->getYear()->getTimestamp());
         $TBS->Show(OPENTBS_DOWNLOAD, $filename);
-
     }
 }

@@ -12,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Car
 {
+    const PARKING_PRICE = 50;
+
     /**
      * @var integer
      *
@@ -144,6 +146,16 @@ class Car
      */
     private $active;
 
+    /**
+     * @var integer
+     * @ORM\Column(name="payed", type="integer", nullable=true)
+     */
+    private $payed;
+
+    /**
+     * @ORM\OneToOne(targetEntity="CommisionContract", mappedBy="car")
+     */
+    private $commisionContract;
 
     /**
      * Get id
@@ -576,5 +588,64 @@ class Car
     public function getActive()
     {
         return $this->active;
+    }
+
+    /**
+     * Set payed
+     *
+     * @param integer $payed
+     * @return Car
+     */
+    public function setPayed($payed)
+    {
+        $this->payed = $payed;
+    
+        return $this;
+    }
+
+    /**
+     * Get payed
+     *
+     * @return integer 
+     */
+    public function getPayed()
+    {
+        return $this->payed;
+    }
+
+    public function getParkingPrice(){
+        if($this->getActive()){
+            if($this->getCommisionContract()){
+                $start_date = $this->getCommisionContract()->getDate();
+                $end_date = new \DateTime();
+                $diff = $start_date->diff($end_date);
+                return ($diff->days + 1) * $this::PARKING_PRICE;
+            }
+        }
+
+        return 0;
+    }
+
+    /**
+     * Set commisionContract
+     *
+     * @param \SergeiK\AvangardBundle\Entity\CommisionContract $commisionContract
+     * @return Car
+     */
+    public function setCommisionContract(\SergeiK\AvangardBundle\Entity\CommisionContract $commisionContract = null)
+    {
+        $this->commisionContract = $commisionContract;
+    
+        return $this;
+    }
+
+    /**
+     * Get commisionContract
+     *
+     * @return \SergeiK\AvangardBundle\Entity\CommisionContract 
+     */
+    public function getCommisionContract()
+    {
+        return $this->commisionContract;
     }
 }
