@@ -13,6 +13,7 @@ use SergeiK\AvangardBundle\Admin\CommisionContractAdmin;
 use SergeiK\AvangardBundle\Entity\SaleContract;
 use Sonata\AdminBundle\Controller\CRUDController;
 use SergeiK\AvangardBundle\Entity\CommisionContract;
+use Symfony\Component\HttpFoundation\Response;
 
 class SaleContractAdminController extends CRUDController {
     public function printAction(SaleContract $c){
@@ -71,6 +72,19 @@ class SaleContractAdminController extends CRUDController {
             $c->getCommisionContract()->getCar() . '-' .
             $c->getBuyer();
         $TBS->Show(OPENTBS_DOWNLOAD, $filename);
+    }
+
+    public function printOrgDocAction(){
+        $path = $this->get('kernel')->getRootDir().'/../web/doc_templates/org_doc.pdf';
+        $content = file_get_contents($path);
+
+        $response = new Response();
+
+        $response->headers->set('Content-Type', 'text/pdf');
+        $response->headers->set('Content-Disposition', 'attachment;filename="org_doc.pdf');
+
+        $response->setContent($content);
+        return $response;
     }
 
     private function num_propis($num){ // $num - цело число

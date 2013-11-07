@@ -94,5 +94,6 @@ class SaleContractAdmin extends Admin
 
     protected function configureRoutes(RouteCollection $collection){
         $collection->add('print', $this->getRouterIdParameter().'/print');
+        $collection->add('print_org_doc', '/print_org_doc');
     }
 }

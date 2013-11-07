@@ -1,0 +1,20 @@
+{% extends 'SonataBlockBundle:Block:block_base.html.twig' %}
+
+{% block block %}
+    <table class="table table-condensed sonata-ba-list">
+        <tbody>
+            <tr>
+                <th><strong>Frequently Pushed Buttons</strong></th>
+            </tr>
+            <tr>
+                <th>
+                    <div class="btn-group">
+                        <a href="{{ path('admin_sergeik_avangard_salecontract_print_org_doc') }}" class="btn btn-small">
+                            Распечатать уставные документы
+                        </a>
+                    </div>
+                </th>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

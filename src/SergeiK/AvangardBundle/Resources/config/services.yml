@@ -34,3 +34,9 @@ services:
         arguments: [~, SergeiK\AvangardBundle\Entity\DepositContract, SergeiKAvangardBundle:DepositContractAdmin]
         tags:
             - {name: sonata.admin, manager_type: orm, group: admin, label: DepositContract}
+
+    sonata.block.service.fub:
+        class: SergeiK\AvangardBundle\Block\FUBBlockService
+        arguments: [ "sonata.block.service.FUB", @templating ]
+        tags:
+            - { name: sonata.block }
