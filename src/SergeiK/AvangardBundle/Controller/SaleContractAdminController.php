@@ -70,7 +70,7 @@ class SaleContractAdminController extends CRUDController {
         $TBS->MergeField('client', $data);
         $filename = 'sale_contract_' .
             $c->getCommisionContract()->getCar() . '-' .
-            $c->getBuyer();
+            $c->getBuyer().'.odt';
         $TBS->Show(OPENTBS_DOWNLOAD, $filename);
     }
 

@@ -72,7 +72,7 @@ class DepositContractAdminController extends CRUDController {
         $TBS->MergeField('client', $data);
         $filename = 'deposit_contract_' .
             $c->getCommisionContract()->getCar() . '-' .
-            $c->getBuyer();
+            $c->getBuyer().'.odt';
         $TBS->Show(OPENTBS_DOWNLOAD, $filename);
     }
 

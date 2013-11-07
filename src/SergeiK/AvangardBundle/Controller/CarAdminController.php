@@ -36,7 +36,7 @@ class CarAdminController extends CRUDController {
         $TBS->MergeField('client', $data);
         $filename = 'price_tag_' .
             $c->getModel() . '-' .
-            date('Y', $c->getYear()->getTimestamp());
+            date('Y', $c->getYear()->getTimestamp()).'.odt';
         $TBS->Show(OPENTBS_DOWNLOAD, $filename);
     }
 }

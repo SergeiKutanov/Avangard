@@ -90,7 +90,7 @@ class CommisionContractAdminController extends CRUDController {
         $TBS->MergeField('client', $data);
         $filename = 'commision_contract_' .
             $c->getCar() . '-' .
-            $c->getCommisioner();
+            $c->getCommisioner(). '.odt';
         $TBS->Show(OPENTBS_DOWNLOAD, $filename);
     }
 
