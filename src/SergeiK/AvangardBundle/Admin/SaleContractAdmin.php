@@ -40,6 +40,9 @@ class SaleContractAdmin extends Admin
                     'delete' => array(),
                     'print' => array(
                         'template'  => 'SergeiKAvangardBundle:Admin:sale_print_btn.twig.html'
+                    ),
+                    'print_hand_sale'   => array(
+                        'template'  => 'SergeiKAvangardBundle:Admin:sale_hand_print_btn.html.twig'
                     )
                 )
             ))
@@ -94,6 +97,7 @@ class SaleContractAdmin extends Admin
 
     protected function configureRoutes(RouteCollection $collection){
         $collection->add('print', $this->getRouterIdParameter().'/print');
-        $collection->add('print_org_doc', '/print_org_doc');
+        $collection->add('print_org_doc', 'print_org_doc');
+        $collection->add('print_hand_sale', $this->getRouterIdParameter().'/print_hand_sale');
     }
 }

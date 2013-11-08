@@ -74,6 +74,47 @@ class SaleContractAdminController extends CRUDController {
         $TBS->Show(OPENTBS_DOWNLOAD, $filename);
     }
 
+    public function printHandSaleAction(SaleContract $c){
+        $TBS = $this->container->get('opentbs');
+        $template_path = $this->get('kernel')->getRootDir().'/../web/doc_templates/hand_sale.odt';
+        $TBS->LoadTemplate($template_path, OPENTBS_ALREADY_UTF8);
+
+        $data = array(
+            'date'              => date('d.m.Y', $c->getDate()->getTimestamp()),
+            'seller_name'       => $c->getCommisionContract()->getCommisioner(),
+            'seller_p_s'        => $c->getCommisionContract()->getCommisioner()->getPassportSeries(),
+            'seller_p_n'        => $c->getCommisionContract()->getCommisioner()->getPassportNumber(),
+            'seller_p_d'        => date('d.m.Y', $c->getCommisionContract()->getCommisioner()->getPassportIssueDate()->getTimestamp()),
+            'seller_p_i'        => $c->getCommisionContract()->getCommisioner()->getPassportIssuer(),
+            'seller_address'    => $c->getCommisionContract()->getCommisioner()->getAddress(),
+            'buyer_name'        => $c->getBuyer(),
+            'buyer_p_s'         => $c->getBuyer()->getPassportSeries(),
+            'buyer_p_n'         => $c->getBuyer()->getPassportNumber(),
+            'buyer_p_d'         => date('d.m.Y', $c->getBuyer()->getPassportIssueDate()->getTimestamp()),
+            'buyer_p_i'         => $c->getBuyer()->getPassportIssuer(),
+            'buyer_address'     => $c->getBuyer()->getAddress(),
+            'car_vin'           => $c->getCommisionContract()->getCar()->getVIN(),
+            'car_body'          => $c->getCommisionContract()->getCar()->getBodyNumber(),
+            'car_model'         => $c->getCommisionContract()->getCar()->getModel(),
+            'car_chassis'       => $c->getCommisionContract()->getCar()->getChassisNumber(),
+            'car_year'          => date('Y', $c->getCommisionContract()->getCar()->getYear()->getTimestamp()),
+            'car_pts_n'         => $c->getCommisionContract()->getCar()->getPTSNumber(),
+            'car_engine'        => $c->getCommisionContract()->getCar()->getEngineNumber(),
+            'car_pts_d'         => date('d.m.Y', $c->getCommisionContract()->getCar()->getIssueDate()->getTimestamp()),
+            'car_type'          => $c->getCommisionContract()->getCar()->getType(),
+            'car_color'         => $c->getCommisionContract()->getCar()->getColor(),
+            'car_pts_i'         => $c->getCommisionContract()->getCar()->getIssuerName(),
+            'car_p'             => $c->getPrice(),
+            'car_p_h'           => $this->num_propis($c->getPrice())
+        );
+
+        $TBS->MergeField('client', $data);
+        $filename = 'sale_contracr_'.
+            $c->getCommisionContract()->getCar() .
+            $c->getBuyer() . '.odt';
+        $TBS->Show(OPENTBS_DOWNLOAD, $filename);
+    }
+
     public function printOrgDocAction(){
         $path = $this->get('kernel')->getRootDir().'/../web/doc_templates/org_doc.pdf';
         $content = file_get_contents($path);
