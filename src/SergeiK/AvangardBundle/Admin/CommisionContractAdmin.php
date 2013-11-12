@@ -15,7 +15,10 @@ class CommisionContractAdmin extends Admin
     protected $datagridValues = array(
         'car.active'    => array(
             'value'         => 1
-        )
+        ),
+        'page'          => 1,
+        '_sort_by'      => 'date',
+        '_sort_order'   => 'DESC'
     );
     /**
      * @param DatagridMapper $datagridMapper

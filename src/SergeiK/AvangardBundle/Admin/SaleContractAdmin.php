@@ -11,6 +11,12 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 class SaleContractAdmin extends Admin
 {
+    protected $datagridValues = array(
+        'page'          => 1,
+        '_sort_by'      => 'date',
+        '_sort_order'   => 'DESC'
+    );
+
     /**
      * @param DatagridMapper $datagridMapper
      */

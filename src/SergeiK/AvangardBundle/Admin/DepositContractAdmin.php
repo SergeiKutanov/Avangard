@@ -12,6 +12,11 @@ use Sonata\AdminBundle\Route\RouteCollection;
 
 class DepositContractAdmin extends Admin
 {
+    protected $datagridValues = array(
+        'page'          => 1,
+        '_sort_by'      => 'date',
+        '_sort_order'   => 'DESC'
+    );
     /**
      * @param DatagridMapper $datagridMapper
      */
