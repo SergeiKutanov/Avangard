@@ -12,6 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Client
 {
+    const PERSON = 1;
+    const COMPANY = 2;
+
     /**
      * @var integer
      *
@@ -22,51 +25,57 @@ class Client
     private $id;
 
     /**
+     * @var integer
+     * @ORM\Column(name="client_type", type="smallint", nullable=false)
+     */
+    private $clientType;
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="firstName", type="string", length=255)
+     * @ORM\Column(name="firstName", type="string", length=255, nullable=true)
      */
     private $firstName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="middleName", type="string", length=255)
+     * @ORM\Column(name="middleName", type="string", length=255, nullable=true)
      */
     private $middleName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lastName", type="string", length=255)
+     * @ORM\Column(name="lastName", type="string", length=255, nullable=true)
      */
     private $lastName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="passportSeries", type="string", length=5)
+     * @ORM\Column(name="passportSeries", type="string", length=5, nullable=true)
      */
     private $passportSeries;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="passportNumber", type="string", length=10)
+     * @ORM\Column(name="passportNumber", type="string", length=10, nullable=true)
      */
     private $passportNumber;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="passportIssuer", type="string", length=255)
+     * @ORM\Column(name="passportIssuer", type="string", length=255, nullable=true)
      */
     private $passportIssuer;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="passportIssueDate", type="datetime")
+     * @ORM\Column(name="passportIssueDate", type="datetime", nullable=true)
      */
     private $passportIssueDate;
 
@@ -83,6 +92,69 @@ class Client
      * @ORM\Column(name="phone", type="string", length=255, nullable=true)
      */
     private $phone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="company_name", type="string", length=255, nullable=true)
+     */
+    private $companyName;
+
+    /**
+     * @var string
+     * @ORM\Column(name="inn", type="string", length=255, nullable=true)
+     */
+    private $inn;
+
+    /**
+     * @var string
+     * @ORM\Column(name="kpp", type="string", length=255, nullable=true)
+     */
+    private $kpp;
+
+    /**
+     * @var string
+     * @ORM\Column(name="acc_number", type="string", length=255, nullable=true)
+     */
+    private $accNumber;
+
+    /**
+     * @var string
+     * @ORM\Column(name="cor_number", type="string", length=255, nullable=true)
+     */
+    private $cor_number;
+
+    /**
+     * @var string
+     * @ORM\Column(name="bik", type="string", length=255, nullable=true)
+     */
+    private $bik;
+
+    /**
+     * @var string
+     * @ORM\Column(name="bank_name", type="string", length=255, nullable=true)
+     */
+    private $bankName;
+
+
+    public static function getClientTypesArray(){
+        return array(
+            self::PERSON    => 'Физическое лицо',
+            self::COMPANY   => 'Юридическое лицо'
+        );
+    }
+
+    public function getClientTypeString(){
+        return self::getClientTypeName($this->getClientType());
+    }
+
+    public function getClientTypeName($type = false){
+        switch($type){
+            case self::PERSON       : return 'Физическое лицо';
+            case self::COMPANY      : return 'Юридическое лицо';
+        }
+        return false;
+    }
 
 
     /**
@@ -337,5 +409,189 @@ class Client
     public function getPhone()
     {
         return $this->phone;
+    }
+
+    /**
+     * Set clientType
+     *
+     * @param integer $clientType
+     * @return Client
+     */
+    public function setClientType($clientType)
+    {
+        $this->clientType = $clientType;
+    
+        return $this;
+    }
+
+    /**
+     * Get clientType
+     *
+     * @return integer 
+     */
+    public function getClientType()
+    {
+        return $this->clientType;
+    }
+
+    /**
+     * Set companyName
+     *
+     * @param string $companyName
+     * @return Client
+     */
+    public function setCompanyName($companyName)
+    {
+        $this->companyName = $companyName;
+    
+        return $this;
+    }
+
+    /**
+     * Get companyName
+     *
+     * @return string 
+     */
+    public function getCompanyName()
+    {
+        return $this->companyName;
+    }
+
+    /**
+     * Set inn
+     *
+     * @param string $inn
+     * @return Client
+     */
+    public function setInn($inn)
+    {
+        $this->inn = $inn;
+    
+        return $this;
+    }
+
+    /**
+     * Get inn
+     *
+     * @return string 
+     */
+    public function getInn()
+    {
+        return $this->inn;
+    }
+
+    /**
+     * Set kpp
+     *
+     * @param string $kpp
+     * @return Client
+     */
+    public function setKpp($kpp)
+    {
+        $this->kpp = $kpp;
+    
+        return $this;
+    }
+
+    /**
+     * Get kpp
+     *
+     * @return string 
+     */
+    public function getKpp()
+    {
+        return $this->kpp;
+    }
+
+    /**
+     * Set accNumber
+     *
+     * @param string $accNumber
+     * @return Client
+     */
+    public function setAccNumber($accNumber)
+    {
+        $this->accNumber = $accNumber;
+    
+        return $this;
+    }
+
+    /**
+     * Get accNumber
+     *
+     * @return string 
+     */
+    public function getAccNumber()
+    {
+        return $this->accNumber;
+    }
+
+    /**
+     * Set cor_number
+     *
+     * @param string $corNumber
+     * @return Client
+     */
+    public function setCorNumber($corNumber)
+    {
+        $this->cor_number = $corNumber;
+    
+        return $this;
+    }
+
+    /**
+     * Get cor_number
+     *
+     * @return string 
+     */
+    public function getCorNumber()
+    {
+        return $this->cor_number;
+    }
+
+    /**
+     * Set bik
+     *
+     * @param string $bik
+     * @return Client
+     */
+    public function setBik($bik)
+    {
+        $this->bik = $bik;
+    
+        return $this;
+    }
+
+    /**
+     * Get bik
+     *
+     * @return string 
+     */
+    public function getBik()
+    {
+        return $this->bik;
+    }
+
+    /**
+     * Set bankName
+     *
+     * @param string $bankName
+     * @return Client
+     */
+    public function setBankName($bankName)
+    {
+        $this->bankName = $bankName;
+    
+        return $this;
+    }
+
+    /**
+     * Get bankName
+     *
+     * @return string 
+     */
+    public function getBankName()
+    {
+        return $this->bankName;
     }
 }

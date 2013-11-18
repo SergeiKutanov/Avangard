@@ -14,6 +14,9 @@ use Sonata\AdminBundle\Controller\CRUDController;
 use SergeiK\AvangardBundle\Entity\CommisionContract;
 
 class CommisionContractAdminController extends CRUDController {
+
+    const EMPTY_LINE = '----------------------';
+
     public function printAction(CommisionContract $c){
         $TBS = $this->container->get('opentbs');
         $template_path = $this->get('kernel')->getRootDir().'/../web/doc_templates/';
@@ -85,6 +88,21 @@ class CommisionContractAdminController extends CRUDController {
             $data['warrant_date']                   = date('d.m.Y', $c->getWarrantDate()->getTimestamp());
             $data['warrant_issuer']                 = $c->getWarrantIssuer();
             $data['warrant_reg_num']                = $c->getWarrantRegNum();
+        }
+
+        if($c->getCar()->getRegCardNumber() != null &&
+            $c->getCar()->getRegCardIssueDate() != null){
+            $data['reg_card'] = $c->getCar()->getRegCardNumber() .
+                ', ' .
+                date('d.m.Y', $c->getCar()->getRegCardIssueDate()->getTimestamp());
+        } else{
+            $data['reg_card'] = CommisionContractAdminController::EMPTY_LINE;
+        }
+
+        if($c->getCar()->getPlateNumber() != null){
+            $data['plate'] = $c->getCar()->getPlateNumber();
+        }else{
+            $data['plate'] = CommisionContractAdminController::EMPTY_LINE;
         }
 
         $TBS->MergeField('client', $data);

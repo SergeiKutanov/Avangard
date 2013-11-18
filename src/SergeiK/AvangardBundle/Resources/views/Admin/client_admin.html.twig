@@ -1,0 +1,32 @@
+{% extends 'SonataAdminBundle:CRUD:base_edit.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("div[id$='_clientType']").delegate("select[id$='_clientType']", 'change', function(e){
+                showFields($(this).val())
+            });
+
+            showFields($("select[id$='_clientType']").val());
+        });
+
+        function showFields(i){
+            if(i == 1){
+                showPersFileds();
+            } else if(i == 2){
+                showCompFields();
+            }
+        }
+
+        function showPersFileds(){
+            $('.comp').parent().parent().css('display', 'none');
+            $('.pers').parent().parent().css('display', 'block');
+        }
+
+        function showCompFields(){
+            $('.comp').parent().parent().css('display', 'block');
+            $('.pers').parent().parent().css('display', 'none');
+        }
+    </script>
+{% endblock %}

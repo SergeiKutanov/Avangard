@@ -87,6 +87,12 @@ class CarAdmin extends Admin
             ->add('issueDate', 'date', array(
                 'years' => range(CarAdmin::OLDEST_YEAR, date('Y'))
             ))
+            ->add('regCardNumber')
+            ->add('regCardIssueDate', 'date', array(
+                'years'         => range(CarAdmin::OLDEST_YEAR, date('Y')),
+                'required'      => false
+            ))
+            ->add('plateNumber')
             ->add('transmission')
             ->add('price')
             ->add('adds')

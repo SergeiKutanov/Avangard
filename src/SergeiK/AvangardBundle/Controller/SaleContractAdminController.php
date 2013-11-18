@@ -16,6 +16,9 @@ use SergeiK\AvangardBundle\Entity\CommisionContract;
 use Symfony\Component\HttpFoundation\Response;
 
 class SaleContractAdminController extends CRUDController {
+
+    const EMPTY_LINE = '----------------------------------';
+
     public function printAction(SaleContract $c){
         $TBS = $this->container->get('opentbs');
         $template_path = $this->get('kernel')->getRootDir().'/../web/doc_templates/sale_contract.odt';
@@ -65,7 +68,20 @@ class SaleContractAdminController extends CRUDController {
             'company_bank_name'         => $company->getBankName(),
         );
 
-        //var_dump($data); die();
+        if($c->getCommisionContract()->getCar()->getRegCardNumber() != null &&
+            $c->getCommisionContract()->getCar()->getRegCardIssueDate() != null){
+            $data['reg_card'] = $c->getCommisionContract()->getCar()->getRegCardNumber() .
+                ', ' .
+                date('d.m.Y', $c->getCommisionContract()->getCar()->getRegCardIssueDate()->getTimestamp());
+        } else{
+            $data['reg_card'] = self::EMPTY_LINE;
+        }
+
+        if($c->getCommisionContract()->getCar()->getPlateNumber() != null){
+            $data['plate'] = $c->getCommisionContract()->getCar()->getPlateNumber();
+        }else{
+            $data['plate'] = self::EMPTY_LINE;
+        }
 
         $TBS->MergeField('client', $data);
         $filename = 'sale_contract_' .
@@ -109,7 +125,7 @@ class SaleContractAdminController extends CRUDController {
         );
 
         $TBS->MergeField('client', $data);
-        $filename = 'sale_contracr_'.
+        $filename = 'sale_contract_'.
             $c->getCommisionContract()->getCar() .
             $c->getBuyer() . '.odt';
         $TBS->Show(OPENTBS_DOWNLOAD, $filename);

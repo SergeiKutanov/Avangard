@@ -3,6 +3,7 @@
 namespace SergeiK\AvangardBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Tests\Models\Company\CompanyPerson;
 
 /**
  * Car
@@ -156,6 +157,24 @@ class Car
      * @ORM\OneToOne(targetEntity="CommisionContract", mappedBy="car")
      */
     private $commisionContract;
+
+    /**
+     * @var string
+     * @ORM\Column(name="reg_card_number", type="string", nullable=true)
+     */
+    private $regCardNumber;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="reg_card_issue_date", type="date", nullable=true)
+     */
+    private $regCardIssueDate;
+
+    /**
+     * @var string
+     * @ORM\Column(name="plate_number", type="string", nullable=true)
+     */
+    private $plateNumber;
 
     /**
      * Get id
@@ -647,5 +666,74 @@ class Car
     public function getCommisionContract()
     {
         return $this->commisionContract;
+    }
+
+    /**
+     * Set regCardNumber
+     *
+     * @param string $regCardNumber
+     * @return Car
+     */
+    public function setRegCardNumber($regCardNumber)
+    {
+        $this->regCardNumber = $regCardNumber;
+    
+        return $this;
+    }
+
+    /**
+     * Get regCardNumber
+     *
+     * @return string 
+     */
+    public function getRegCardNumber()
+    {
+        return $this->regCardNumber;
+    }
+
+    /**
+     * Set regCardIssueDate
+     *
+     * @param \DateTime $regCardIssueDate
+     * @return Car
+     */
+    public function setRegCardIssueDate($regCardIssueDate)
+    {
+        $this->regCardIssueDate = $regCardIssueDate;
+    
+        return $this;
+    }
+
+    /**
+     * Get regCardIssueDate
+     *
+     * @return \DateTime 
+     */
+    public function getRegCardIssueDate()
+    {
+        return $this->regCardIssueDate;
+    }
+
+    /**
+     * Set plateNumber
+     *
+     * @param string $plateNumber
+     * @return Car
+     */
+    public function setPlateNumber($plateNumber)
+    {
+        $this->plateNumber = $plateNumber;
+    
+        return $this;
+    }
+
+    /**
+     * Get plateNumber
+     *
+     * @return string 
+     */
+    public function getPlateNumber()
+    {
+        return $this->plateNumber;
     }
 }
