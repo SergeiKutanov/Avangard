@@ -12,6 +12,7 @@ namespace SergeiK\AvangardBundle\Controller;
 use SergeiK\AvangardBundle\Admin\CommisionContractAdmin;
 use Sonata\AdminBundle\Controller\CRUDController;
 use SergeiK\AvangardBundle\Entity\CommisionContract;
+use SergeiK\AvangardBundle\Entity\Client;
 
 class CommisionContractAdminController extends CRUDController {
 
@@ -20,11 +21,18 @@ class CommisionContractAdminController extends CRUDController {
     public function printAction(CommisionContract $c){
         $TBS = $this->container->get('opentbs');
         $template_path = $this->get('kernel')->getRootDir().'/../web/doc_templates/';
-        if($c->getCommisionerAgent() != null){
-            $template_path .= 'commision_with_agent.odt';
+        if($c->getCommisioner()->getClientType() == Client::PERSON){
+            if($c->getCommisionerAgent() != null){
+                $template_path .= 'commision_with_agent.odt';
+            }else{
+                $template_path .= 'commision.odt';
+            }
+        }else if($c->getCommisioner()->getClientType() == Client::COMPANY){
+            $template_path .= 'commision_company.odt';
         }else{
-            $template_path .= 'commision.odt';
+            die('Set client type first');
         }
+
         $TBS->LoadTemplate($template_path, OPENTBS_ALREADY_UTF8);
 
         if($c->getMinPriceEmpty()){
@@ -66,12 +74,6 @@ class CommisionContractAdminController extends CRUDController {
             'car_PTS_issue_date'        => date('d.m.Y', $c->getCar()->getIssueDate()->getTimestamp()),
             'min_price'                 => $minPrice,
             'reward'                    => $reward,
-            'passport_s'                => $c->getCommisioner()->getPassportSeries(),
-            'passport_n'                => $c->getCommisioner()->getPassportNumber(),
-            'passport_i'                => $c->getCommisioner()->getPassportIssuer(),
-            'passport_i_date'           => date('d.m.Y', $c->getCommisioner()->getPassportIssueDate()->getTimestamp()),
-            'issuer_address'            => $c->getCommisioner()->getAddress(),
-            'commisioner_bn'            => $c->getCommisioner()->getBriefName(),
             'company_name'              => $company->getName(),
             'company_address'           => $company->getAddress(),
             'company_inn'               => $company->getINN(),
@@ -81,7 +83,22 @@ class CommisionContractAdminController extends CRUDController {
             'company_bik'               => $company->getBIK(),
             'company_bank_name'         => $company->getBankName(),
         );
-
+            if($c->getCommisioner()->getClientType() == Client::PERSON || $c->getCommisioner()->getClientType() == null){
+                $data['passport_s']     = $c->getCommisioner()->getPassportSeries();
+                $data['passport_i']     = $c->getCommisioner()->getPassportIssuer();
+                $data['passport_n']     = $c->getCommisioner()->getPassportNumber();
+                $data['passport_i_date']= date('d.m.Y', $c->getCommisioner()->getPassportIssueDate()->getTimestamp());
+                $data['issuer_address'] = $c->getCommisioner()->getAddress();
+                $data['commisioner_bn'] = $c->getCommisioner()->getBriefName();
+            } else if($c->getCommisioner()->getClientType() == Client::COMPANY){
+                $data['comm_address']   = $c->getCommisioner()->getAddress();
+                $data['comm_inn']       = $c->getCommisioner()->getInn();
+                $data['comm_kpp']       = $c->getCommisioner()->getKpp();
+                $data['comm_acc_n']     = $c->getCommisioner()->getAccNumber();
+                $data['comm_corr_acc_n']= $c->getCommisioner()->getCorNumber();
+                $data['comm_bik']       = $c->getCommisioner()->getBik();
+                $data['comm_bank_name'] = $c->getCommisioner()->getBankName();
+            }
         if($c->getCommisionerAgent() != null){
             $data["commisioner_agent_full_name"]    = $c->getCommisionerAgent()->__toString();
             $data['warrant_num']                    = $c->getWarrantNumber();

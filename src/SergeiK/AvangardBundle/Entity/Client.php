@@ -375,9 +375,13 @@ class Client
     }
 
     public function __toString(){
-        return $this->getLastName() . ' ' .
-        $this->getFirstName() . ' ' .
-        $this->getMiddleName();
+        if($this->getClientType() == self::PERSON || $this->getClientType() == null){
+            return $this->getLastName() . ' ' .
+            $this->getFirstName() . ' ' .
+            $this->getMiddleName();
+        } else if($this->getClientType() == self::COMPANY){
+            return $this->getCompanyName();
+        }
     }
 
     public function getBriefName(){
