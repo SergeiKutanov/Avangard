@@ -124,6 +124,21 @@ class SaleContractAdminController extends CRUDController {
             'car_p_h'           => $this->num_propis($c->getPrice())
         );
 
+        if($c->getCommisionContract()->getCar()->getRegCardNumber() != null &&
+            $c->getCommisionContract()->getCar()->getRegCardIssueDate() != null){
+            $data['car_reg_card'] = $c->getCommisionContract()->getCar()->getRegCardNumber() .
+                ', ' .
+                date('d.m.Y', $c->getCommisionContract()->getCar()->getRegCardIssueDate()->getTimestamp());
+        } else{
+            $data['car_reg_card'] = self::EMPTY_LINE;
+        }
+
+        if($c->getCommisionContract()->getCar()->getPlateNumber() != null){
+            $data['plate'] = $c->getCommisionContract()->getCar()->getPlateNumber();
+        }else{
+            $data['plate'] = self::EMPTY_LINE;
+        }
+
         $TBS->MergeField('client', $data);
         $filename = 'sale_contract_'.
             $c->getCommisionContract()->getCar() .
